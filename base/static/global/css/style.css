@@ -1,0 +1,20 @@
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+    background-color: rgba(255, 255, 255, 0.5);
+}
+form{
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 5px 2px 5px rgba(0,0,0,0.15);
+}
+
+label, input{
+    margin: 5px;
+}

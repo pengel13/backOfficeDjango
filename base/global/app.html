@@ -1,0 +1,24 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lancamento de Horas BackOffice</title>
+    <link rel="stylesheet" href={% static "global/css/style.css" %}>
+</head>
+<body>
+    <form action="/" method="get">
+        <label for="DataInicio">Data de Início: </label>
+        <input id="DataInicio" type="date" name="DataInicio" value=02/11/2023>
+        <label for="DataFim">Data de Início: </label>
+        <input id="DataFim" type="date" name="DataFim" value=23/11/2023>
+        <input type="submit">
+        <br>
+        <label for="CodColaborador">Código Colaborador: </label>
+        <input id="CodColaborador" type="int" name="CodColaborador" value=0>
+        <label for="maxCodColaborador">Código Colaborador: </label>
+        <input id="maxCodColaborador" type="int" name="maxCodColaborador" value=999999999>
+    </form>
+
+</body>
+</html>
