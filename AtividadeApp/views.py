@@ -21,7 +21,7 @@ CentroCusto = 0
 maxCentroCusto = 0
 
 
-@login_required
+@login_required 
 def main(request: HttpRequest) -> HttpResponse:
     filtros_form = FiltrosForm()
     if request.method == "POST":
@@ -60,14 +60,15 @@ def main(request: HttpRequest) -> HttpResponse:
             wb.save(response) # type: ignore
 
             return response
-    return render(request, "AtividadeApp/base.html", context={"form": filtros_form})
+        
+    context = {"form": filtros_form, "site_title": "Lancamento de Horas"}
+    return render(request, "AtividadeApp/base.html", context=context)
 
 def login_view(request):
     form = AuthenticationForm(request)
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
-            messages.success(request, "USUÁRIO LOGADO")
             print("IS-VALIDD")
             user = form.get_user()
             auth.login(request, user)
@@ -75,6 +76,7 @@ def login_view(request):
         messages.error(request, "Houve um erro no user ou na senha")
     context = {
         "form": form,
+        "site_title": "Login "
     }
     return render(request, "AtividadeApp/login.html", context)
 

@@ -233,13 +233,8 @@ def gerarExcel(
     wb = Workbook()
 
     if len(ativTrabalhoDf) == 0:
-        with NamedTemporaryFile(delete=False) as tmp:
-            wb.save(tmp.name)
-            tmp.seek(0)
-            stream = tmp.read()
-
-        return stream  # type: ignore
-
+        return wb  
+    
     for desc_atividade in ativTrabalhoDf["DescricaoAtividade"].unique().tolist():
         if pd.isnull(desc_atividade):
             continue
