@@ -2,6 +2,7 @@
 
 import pandas as pd
 from openpyxl import Workbook
+# from xlwt import Workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.writer.excel import save_workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
@@ -213,7 +214,7 @@ def gerarExcel(
     fimAtividade: str = "",
     centroCusto: str = "",
     fimCentroCusto: str = "",
-) -> _TemporaryFileWrapper:
+) -> Workbook:
     ativTrabalho, columns = pegarDados(
         date.strftime(dataInicio, "%Y%m%d"),  # type: ignore
         date.strftime(dataFim, "%Y%m%d"),  # type: ignore
@@ -226,6 +227,7 @@ def gerarExcel(
         centroCusto,
         fimCentroCusto,
     )
+    
     ativTrabalhoDf = transformaParaDf(ativTrabalho, columns)
     print(f"Quantidade de registros: {len(ativTrabalhoDf)}")
     wb = Workbook()

@@ -8,24 +8,36 @@
     <link rel="stylesheet" href="{% static "css/style.css" %}">
 </head>
 <body>
-    {% csrf_token %}
+    {% include "AtividadeApp/partials/_message.html" %}
     <div class="form-content">
-        {% for field in form %}
-            <div class="form-field">
-                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                {{ field }}
-            </div>
-        {% endfor %}
-        {% comment %} <div class="submit-btn">
-            <a href={% static "images/gremio-wallpaper.jpg" %} download>
-                <input type="submit" value="Exportar Atividade">
+        <form action='{% url "main" %}' method='POST' enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-field">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <a href={% url "main" %} download id='btn_analyze'>
+                <div class="btn">                
+                    <input type="submit" value="Exportar Atividade">   
+                </div>
             </a>
-        </div> {% endcomment %}
-        <div class="submit-btn">
-            
-           <button class="btn" type="submit">Exportar Atividade</button>
-
         </div>
-    </div>
+    </form>
+    <script>
+        $('#btn_analyze').click(function(e) {
+            e.preventDefault()
+            $.post('/api/v1/analyzer/',
+                data,
+                "json").done(function(response) {
+                //...
+            }).fail(function() {
+                Logger.error(" Error ")
+            })
+        
+            return false
+        }) // analyze click
+    </script>
 </body>
 </html>

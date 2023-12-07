@@ -1,4 +1,3 @@
-from datetime import date
 from datetime import datetime
 from django import forms
 
@@ -9,10 +8,10 @@ class DateInput(forms.DateInput):
 
 class FiltrosForm(forms.Form):
     dataInicio = forms.DateField(
-        widget=DateInput, label="Data Início", initial=date(2023, 10, 12)
+        widget=DateInput, label="Data Início", 
     )
     dataFim = forms.DateField(
-        widget=DateInput, label="Data Fim", initial=datetime.now()
+        widget=DateInput, label="Data Fim",
     )
 
     minCodColaborador = forms.IntegerField(

@@ -1,43 +1,42 @@
-{% load static %}
-
-<!DOCTYPE html>
+{% load static %}<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela de Login</title>
-    <link rel="stylesheet" href={% static "css/style.css" %}>
-</head>
-<body>
-    <form 
-    action="{% url "login" %}"
-    method="POST"
-    >
-    {% csrf_token %}
-    <div class='title'>
-        <h2>Login</h2>
-    </div>
-        {% if user.is_authenticated %}
-            <p class='text'>
-                Você fez login como {{ user.username }}.
-                Clique <a href="{% url "logout" %}">aqui</a> para sair.
-            </p>
-        {% else %}
-            <div class="form-content">
-                {% for field in form  %}
-                    <div class="form-field">
-                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                        {{ field }}
-                        {{ field.errors }}
-                    </div>
-                {% endfor %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tela de Login</title>
+        <link rel="stylesheet" href={% static "css/style.css" %}>
+    </head>
+    <body>
+        <form action="{% url "login" %}" method="POST">
+            {% csrf_token %}
+            <div class='title'>
+                <h2>Login</h2>
+            </div>
+            {% include "AtividadeApp/partials/_message.html" %}
+
+            {% if user.is_authenticated %}
+                <div class="text">
+                    <h4>
+                        Você fez login como {{ user.username }}.
+                        Clique <a href="{% url "logout" %}">aqui</a> para sair.
+                    </h4>
+                </div>
+            {% else %}
                 <div class="form-content">
-                    <div class="form-field">
-                    <button class="btn" type="submit">Send</button>
+                    {% for field in form %}
+                        <div class="form-field">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                            {{ field.errors }}
+                        </div>
+                    {% endfor %}
+                    <div class="form-content">
+                        <div class="form-field">
+                            <button class="btn" type="submit">Login</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endif %}
-    </form>
-</body>
+            {% endif %}
+        </form>
+    </body>
 </html>
