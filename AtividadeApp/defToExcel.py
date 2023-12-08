@@ -143,7 +143,6 @@ def transformaParaDf(ativTrabalho, columns) -> pd.DataFrame:
 
     for cont, data in enumerate(ativTrabalhoDf["Data"]):
         if len(data) == 0:
-            print("DADO DE DATA É NULO")
             ativTrabalhoDf.iloc[cont, 0] = datetime(1970, 1, 1)
             continue
         ativTrabalhoDf.iloc[cont, 0] = datetime.strptime(data, "%Y%m%d")
@@ -152,7 +151,6 @@ def transformaParaDf(ativTrabalho, columns) -> pd.DataFrame:
 
     for cont, hora in enumerate(ativTrabalhoDf["HoraInicio"]):
         if len(hora) == 0 or hora == "null":
-            print("DADO DE HORA INICIO É NULO")
             ativTrabalhoDf.iloc[cont, 1] = datetime(1970, 1, 1)
             continue
         ativTrabalhoDf.iloc[cont, 1] = datetime(
@@ -161,7 +159,6 @@ def transformaParaDf(ativTrabalho, columns) -> pd.DataFrame:
 
     for cont, hora in enumerate(ativTrabalhoDf["HoraFim"]):
         if len(hora) == 0 or hora == "null":
-            print("DADO DE HORA INICIO É NULO")
             ativTrabalhoDf.iloc[cont, 2] = datetime(1970, 1, 1)
             continue
         if int(hora[:2]) == 24:
@@ -229,9 +226,14 @@ def gerarExcel(
     print(f"Quantidade de registros: {len(ativTrabalhoDf)}")
     wb = Workbook()
 
+    resumoSheet = wb.create_sheet(title='Resumo Atividade')
+
+    resumoSheet['A1'] = 'Atividade'
+    resumoSheet['B1'] = 'Quantidade Horas'
+    c=1
     if len(ativTrabalhoDf) == 0:
         return wb  
-    
+    horasTotal = 0
     for desc_atividade in ativTrabalhoDf["DescricaoAtividade"].unique().tolist():
         if pd.isnull(desc_atividade):
             continue
@@ -258,7 +260,8 @@ def gerarExcel(
         horasDosMinutos = qtdMinutos // 60
         qtdHoras += horasDosMinutos
         qtdMinutos -= horasDosMinutos * 60
-
+        if len(str(qtdMinutos)) == 1:
+            qtdMinutos = '00'
         title = desc_atividade.replace(":", "-")
         title = title.replace("/", "|")
 
@@ -275,7 +278,17 @@ def gerarExcel(
 
         ws["E4"] = "Qtde Horas Totais:"
         ws["F4"] = f"{qtdHoras}:{qtdMinutos}"
+        
+        c+=1
 
+        resumoSheet[f'A{c}'] = desc_atividade
+        resumoSheet[f'B{c}'] = f"{qtdHoras}:{qtdMinutos}"
+        horasTotalAtiv = int(qtdHoras)
+        if qtdMinutos !='00':
+            horasTotalAtiv += qtdMinutos/60
+
+        horasTotal += horasTotalAtiv
+        
         def passarParaDecimal(row):
             hora: int = 0
             minuto: float = 0.0
@@ -286,8 +299,9 @@ def gerarExcel(
                 hora = int(row[:2])
                 minuto = int(row[2:]) / 60
             return hora + minuto
-
+        
         atividadeTrabalho["Qtde Horas Decimal"] = atividadeTrabalho["Qtde Horas"]
+        
         atividadeTrabalho["Qtde Horas Decimal"] = atividadeTrabalho[
             "Qtde Horas Decimal"
         ].apply(lambda x: passarParaDecimal(x))
@@ -306,13 +320,14 @@ def gerarExcel(
             ws.append(r)
 
     del wb["Sheet"]
-
-    # with NamedTemporaryFile(delete=False) as tmp:
-    #     wb.save(tmp.name)
-    #     tmp.seek(0)
-    #     stream = tmp.read()
-
-    # save_workbook(wb, "filename1212121212.xlsx") # type: ignore
+    column_widthsResumo = [50, 10]
+    for i, column_width in enumerate(column_widthsResumo, 1):
+        resumoSheet.column_dimensions[get_column_letter(i)].width = column_width
+    c+=1
+        
+    resumoSheet[f'A{c}'] = 'TOTAL DE HORAS'
+    resumoSheet[f'B{c}'] = horasTotal
+    print(horasTotal)
     return wb
 
 

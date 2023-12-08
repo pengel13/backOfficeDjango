@@ -1,3 +1,6 @@
 /venv/
 /static/
 .vscode
+db.sqlite3
+AtividadeApp/__pycache__/defToExcel.cpython-311.pyc
+backOfficeProject/__pycache__/settings.cpython-311.pyc
