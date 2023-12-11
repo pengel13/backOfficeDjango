@@ -233,7 +233,8 @@ def gerarExcel(
     c=1
     if len(ativTrabalhoDf) == 0:
         return wb  
-    horasTotal = 0
+
+    horasTotalDecimal = 0
     for desc_atividade in ativTrabalhoDf["DescricaoAtividade"].unique().tolist():
         if pd.isnull(desc_atividade):
             continue
@@ -278,17 +279,6 @@ def gerarExcel(
 
         ws["E4"] = "Qtde Horas Totais:"
         ws["F4"] = f"{qtdHoras}:{qtdMinutos}"
-        
-        c+=1
-
-        resumoSheet[f'A{c}'] = desc_atividade
-        resumoSheet[f'B{c}'] = f"{qtdHoras}:{qtdMinutos}"
-        horasTotalAtiv = int(qtdHoras)
-        if qtdMinutos !='00':
-            horasTotalAtiv += qtdMinutos/60
-
-        horasTotal += horasTotalAtiv
-        
         def passarParaDecimal(row):
             hora: int = 0
             minuto: float = 0.0
@@ -297,8 +287,16 @@ def gerarExcel(
                 minuto: float = int(row[2:]) / 60
             elif len(row) == 5:
                 hora = int(row[:2])
-                minuto = int(row[2:]) / 60
+                minuto = int(row[3:]) / 60
             return hora + minuto
+        
+        c+=1
+        horaMinuto =  f"{qtdHoras}:{qtdMinutos}"   
+        horaMinutoDecimal = passarParaDecimal(horaMinuto)
+        resumoSheet[f'A{c}'] = desc_atividade
+        resumoSheet[f'B{c}'] = horaMinuto
+        resumoSheet[f'C{c}'] = horaMinutoDecimal
+        horasTotalDecimal += horaMinutoDecimal
         
         atividadeTrabalho["Qtde Horas Decimal"] = atividadeTrabalho["Qtde Horas"]
         
@@ -324,10 +322,9 @@ def gerarExcel(
     for i, column_width in enumerate(column_widthsResumo, 1):
         resumoSheet.column_dimensions[get_column_letter(i)].width = column_width
     c+=1
-        
+    
     resumoSheet[f'A{c}'] = 'TOTAL DE HORAS'
-    resumoSheet[f'B{c}'] = horasTotal
-    print(horasTotal)
+    resumoSheet[f'C{c}'] = horasTotalDecimal
     return wb
 
 
