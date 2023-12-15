@@ -256,7 +256,10 @@ def gerarExcel(
         for x in atividadeTrabalho["Qtde Horas"]:
             if len(x) == 4:
                 qtdHoras += int(x[0])
-                qtdMinutos += int(x[2:4])
+                qtdMinutos += int(x[2:])
+            elif len(x) == 5:
+                qtdHoras += int(x[:2])
+                qtdMinutos += int(x[3:])
 
         horasDosMinutos = qtdMinutos // 60
         qtdHoras += horasDosMinutos
@@ -288,6 +291,9 @@ def gerarExcel(
             elif len(row) == 5:
                 hora = int(row[:2])
                 minuto = int(row[3:]) / 60
+            elif len(row) == 6:
+                hora = int(row[:3])
+                minuto = int(row[4:]) / 60
             return hora + minuto
         
         c+=1

@@ -15,18 +15,75 @@
     padding-top: 8px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 25px;
-    background-color: black;
-}
-.text {
-  font-size: 10px;
-  font-family:'Times New Roman', Times, serif;
+
 }
 
-/* .submit-btn a input{
+.title{
+  margin:12px 0 5px 12px;
+  font-size:25px;
+  text-decoration: underline;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.text{
+  margin-left:40px;
+  margin-top:25px;
+}
+
+.text a{
+  text-decoration: none;
+  font-style: italic;
+}
+
+.message {
+  max-width: 600px;
+  margin: var(--spacing) auto;
+  margin-top: calc(var(--spacing) * 2);
+  padding: var(--spacing);
+  text-align: center;
+  border-radius: var(--default-border-radius);
+  font-size: var(--smaller-font-size);
+}
+
+.message.success {
+  background: rgba(0, 255, 0, 0.3);
+  border: 1px solid rgba(0, 255, 0, 90%);
+}
+
+.message.error {
+  background: rgba(255, 0, 0, 0.3);
+  border: 1px solid rgba(255, 0, 0, 90%);
+}
+
+.message.warning {
+  background: rgba(255, 255, 0, 0.3);
+  border: 1px solid rgba(255, 255, 0, 90%);
+}
+
+.message.info {
+  background: rgba(0, 0, 255, 0.3);
+  border: 1px solid rgba(0, 0, 255, 0.3);
+}
+
+.btn {
+  width: 20%;
+  text-align: right;
+}
+
+.btn input{
+  margin:10px;
+  padding:10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.trocarConta{
+  margin: 15px 0 0 15px;
+}
+
+#btnLogin{
+  padding:10px;
+  margin:5px;
   background-color: rgba(0,0,0,0.3);
-  margin: 10px;
-  padding: 25px;
-  cursor:  pointer;
-  margin-left: 40px;
-
-} */
+}
