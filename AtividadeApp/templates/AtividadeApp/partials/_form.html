@@ -1,7 +1,60 @@
-{% for field in form %}
+<div class="form-row">
     <div class="form-field">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {{ field }}
-        {{ field.errors }}
+        <label for="{{ form.dataInicio.id_for_label }}">{{ form.dataInicio.label }}</label>
+        {{ form.dataInicio }}
+        {{ form.dataInicio.errors }}
     </div>
-{% endfor %}
+    <div class="form-field">
+        <label for="{{ form.dataFim.id_for_label }}">{{ form.dataFim.label }}</label>
+        {{ form.dataFim }}
+        {{ form.dataFim.errors }}
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-field">
+        <label for="{{ form.minCodColaborador.id_for_label }}">{{ form.minCodColaborador.label }}</label>
+        {{ form.minCodColaborador }}
+        {{ form.minCodColaborador.errors }}
+    </div>
+    <div class="form-field">
+        <label for="{{ form.maxCodColaborador.id_for_label }}">{{ form.maxCodColaborador.label }}</label>
+        {{ form.maxCodColaborador }}
+        {{ form.maxCodColaborador.errors }}
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-field">
+        <label for="{{ form.minCliente.id_for_label }}">{{ form.minCliente.label }}</label>
+        {{ form.minCliente }}
+        {{ form.minCliente.errors }}
+    </div>
+    <div class="form-field">
+        <label for="{{ form.maxCliente.id_for_label }}">{{ form.maxCliente.label }}</label>
+        {{ form.maxCliente }}
+        {{ form.maxCliente.errors }}
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-field">
+        <label for="{{ form.minAtividade.id_for_label }}">{{ form.minAtividade.label }}</label>
+        {{ form.minAtividade }}
+        {{ form.minAtividade.errors }}
+    </div>
+    <div class="form-field">
+        <label for="{{ form.maxAtividade.id_for_label }}">{{ form.maxAtividade.label }}</label>
+        {{ form.maxAtividade }}
+        {{ form.maxAtividade.errors }}
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-field">
+        <label for="{{ form.minCentroCusto.id_for_label }}">{{ form.minCentroCusto.label }}</label>
+        {{ form.minCentroCusto }}
+        {{ form.minCentroCusto.errors }}
+    </div>
+    <div class="form-field">
+        <label for="{{ form.maxCentroCusto.id_for_label }}">{{ form.maxCentroCusto.label }}</label>
+        {{ form.maxCentroCusto }}
+        {{ form.maxCentroCusto.errors }}
+    </div>
+</div>

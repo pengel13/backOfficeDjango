@@ -36,33 +36,39 @@
 }
 
 .message {
-  max-width: 600px;
-  margin: var(--spacing) auto;
-  margin-top: calc(var(--spacing) * 2);
-  padding: var(--spacing);
+  max-width: 100%;
+  margin: 0.7rem auto 1.2rem auto;
+  padding: 0.8rem 1.2rem;
   text-align: center;
-  border-radius: var(--default-border-radius);
-  font-size: var(--smaller-font-size);
+  border-radius: 8px;
+  font-size: 1.08rem;
+  font-weight: 500;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  border: none;
 }
 
 .message.success {
-  background: rgba(0, 255, 0, 0.3);
-  border: 1px solid rgba(0, 255, 0, 90%);
+  background: linear-gradient(90deg, #e0ffe8 0%, #b6f5c9 100%);
+  color: #176b34;
+  border: 1.5px solid #4be37a;
 }
 
 .message.error {
-  background: rgba(255, 0, 0, 0.3);
-  border: 1px solid rgba(255, 0, 0, 90%);
+  background: linear-gradient(90deg, #ffeaea 0%, #ffd6d6 100%);
+  color: #b71c1c;
+  border: 1.5px solid #ff4d4d;
 }
 
 .message.warning {
-  background: rgba(255, 255, 0, 0.3);
-  border: 1px solid rgba(255, 255, 0, 90%);
+  background: linear-gradient(90deg, #fffbe0 0%, #fff3b6 100%);
+  color: #8a6d1b;
+  border: 1.5px solid #ffe066;
 }
 
 .message.info {
-  background: rgba(0, 0, 255, 0.3);
-  border: 1px solid rgba(0, 0, 255, 0.3);
+  background: linear-gradient(90deg, #e0f0ff 0%, #b6d8ff 100%);
+  color: #155fa0;
+  border: 1.5px solid #4da3ff;
 }
 
 .btn {
@@ -86,4 +92,176 @@
   padding:10px;
   margin:5px;
   background-color: rgba(0,0,0,0.3);
+}
+
+/* Center the login form on the page and style it as a card */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f6fa;
+}
+
+.login-card {
+  background: #fff;
+  padding: 2.5rem 2rem 2rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08);
+  min-width: 340px;
+  max-width: 90vw;
+}
+
+.title h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-decoration: underline;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 0;
+}
+
+.form-field label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.form-field input[type="text"],
+.form-field input[type="password"] {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f0f4f8;
+  transition: border 0.2s;
+}
+
+.form-field input[type="text"]:focus,
+.form-field input[type="password"]:focus {
+  border: 1.5px solid #0077ff;
+  outline: none;
+  background: #fff;
+}
+
+.form-field input[type="number"] {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f0f4f8;
+  transition: border 0.2s;
+}
+
+.form-field input[type="number"]:focus {
+  border: 1.5px solid #0077ff;
+  outline: none;
+  background: #fff;
+}
+
+.form-field input[type="date"] {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f0f4f8;
+  transition: border 0.2s;
+}
+
+.form-field input[type="date"]:focus {
+  border: 1.5px solid #0077ff;
+  outline: none;
+  background: #fff;
+}
+
+#btnLogin {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.7rem;
+  background: linear-gradient(90deg, #0077ff 0%, #0055aa 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: background 0.2s, transform 0.1s;
+}
+
+#btnLogin:hover {
+  background: linear-gradient(90deg, #0055aa 0%, #0077ff 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+@media (max-width: 500px) {
+  .login-card {
+    min-width: unset;
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+  }
+  .title h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Add after .form-content or at the end */
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.form-row .form-field {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.user-message {
+  text-align: center;
+  margin-bottom: 1.2rem;
+  font-size: 1.15rem;
+  background: #eaf4ff;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  color: #1a237e;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.user-message a {
+  color: #0055aa;
+  text-decoration: none;
+  margin-left: 0.5rem;
+  transition: color 0.2s;
+}
+
+.user-message a:hover {
+  color: #0077ff;
+  text-decoration: underline;
+}
+
+.page-title h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 1.1rem;
+  margin-top: 0.2rem;
+  letter-spacing: 0.5px;
+  color: #1a237e;
 }

@@ -1,20 +1,24 @@
 {% include "AtividadeApp/partials/_head.html" %}
 <body>
-    <div class="trocarConta">
-        <h4>
-            Você fez login como {{ user.username }}.
-            Clique <a href="{% url "logout" %}">aqui</a> para trocar de conta.
-        </h4>
-    </div>
-    {% include "AtividadeApp/partials/_message.html" %}
-    <div class="form-content">
-        <form action='{% url "main" %}' method='POST' enctype="multipart/form-data">
-            {% csrf_token %}
-            {% include "AtividadeApp/partials/_form.html" %} 
-            <div class="btn">             
-                <input type="submit" value="Exportar Atividade">   
+    <div class="login-container">
+        <div class="login-card">
+            <div class="page-title">
+                <h2>Lançamento de Horas</h2>
             </div>
-        </form>
+            <div class="user-message">
+                <span>Olá, <strong>{{ user.username }}</strong>! Você está logado. <a href="{% url 'logout' %}"><strong>Trocar de conta</strong></a></span>
+            </div>
+            {% include "AtividadeApp/partials/_message.html" %}
+            <div class="form-content">
+                <form action='{% url "main" %}' method='POST' enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% include "AtividadeApp/partials/_form.html" %} 
+                    <div class="form-field">
+                        <button id="btnLogin" type="submit">Exportar Atividade</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     <script>
         $('#btn_analyze').click(function(e) {
