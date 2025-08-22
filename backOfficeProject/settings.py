@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-qn(tb1kgpup^0)wr2oe42k4mff%c!focw9)=id@%nux*e5u_@3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["10.1.1.14", "127.0.0.1", "0.0.0.0", "10.1.1.108"]
+ALLOWED_HOSTS = ["10.1.1.14", "127.0.0.1", "0.0.0.0", "10.1.1.108", "sbyte.ddns.net"]
 
 
 # Application definition
@@ -129,8 +129,3 @@ STATIC_ROOT = BASE_DIR / "static"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-try:
-    from backOfficeProject.local_settings import *
-except ImportError:
-    ...
